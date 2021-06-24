@@ -28,3 +28,9 @@ npm run lint
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Live demo
+
+```
+https://cranky-brown-0f692f.netlify.app
+```
