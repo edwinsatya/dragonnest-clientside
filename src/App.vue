@@ -1,8 +1,5 @@
 <template>
   <div>
-    <audio id="myAudio" controls autoplay loop style="display:none;">
-      <source src="./assets/audio/audio.mp3" type="audio/mpeg" />
-    </audio>
     <v-app class="app">
       <navbartop-item v-if="$route.path !== '/news'" />
       <navbarmain-item
