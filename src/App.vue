@@ -1,32 +1,52 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div>
+    <audio id="myAudio" controls autoplay loop style="display:none;">
+      <source src="./assets/audio/audio.mp3" type="audio/mpeg" />
+    </audio>
+    <v-app class="app">
+      <navbartop-item v-if="$route.path !== '/news'" />
+      <navbarmain-item
+        v-if="
+          $route.path !== '/formsign/signin' &&
+            $route.path !== '/formsign/signup' &&
+            $route.path !== '/news'
+        "
+      />
+      <transition name="fadeWindow" mode="out-in">
+        <router-view />
+      </transition>
+      <vue-snotify></vue-snotify>
+      <footer-item v-if="$route.path !== '/news'" />
+    </v-app>
   </div>
 </template>
 
+<script>
+import NavbarTop from "@/components/NavbarTop.vue";
+import NavbarMain from "@/components/NavbarMain.vue";
+import Footer from "@/components/Footer.vue";
+
+export default {
+  name: "App",
+  components: {
+    "navbartop-item": NavbarTop,
+    "navbarmain-item": NavbarMain,
+    "footer-item": Footer,
+  },
+};
+</script>
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.app {
+  padding: 0px;
+  margin: 0px;
+}
+.fadeWindow-enter-active,
+.fadeWindow-leave-active {
+  transition: opacity 0.2s ease-in;
 }
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.fadeWindow-enter,
+.fadeWindow-leave-to {
+  opacity: 0;
 }
 </style>
